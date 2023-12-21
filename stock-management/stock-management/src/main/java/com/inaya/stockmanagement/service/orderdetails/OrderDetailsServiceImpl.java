@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class OrderDetailsServiceImpl implements OrderDetailsService {
@@ -25,6 +26,16 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
     public OrderDetails add(OrderDetails orderDetails) {
         return orderDetailsRepository.save(orderDetails);
     }
+
+    /**
+     * @param orderDetailsList
+     * @return
+     */
+    @Override
+    public List<OrderDetails> addAll(List<OrderDetails> orderDetailsList) {
+        return orderDetailsRepository.saveAllAndFlush(orderDetailsList);
+    }
+
 
     /**
      * @param orderDetails

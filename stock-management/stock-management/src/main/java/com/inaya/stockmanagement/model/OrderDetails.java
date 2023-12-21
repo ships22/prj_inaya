@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @Entity
 @NoArgsConstructor
@@ -24,11 +26,11 @@ public class OrderDetails {
     private int quantity;
 
     @Column(name = "unit_price")
-    private int unitPrice;
+    private BigDecimal unitPrice;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Order order;
+
 
 }

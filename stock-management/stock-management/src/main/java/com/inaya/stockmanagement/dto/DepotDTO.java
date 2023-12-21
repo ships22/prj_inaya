@@ -21,7 +21,7 @@ public class DepotDTO {
 
     private String phone;
 
-    private Set<Stock> stock = new HashSet<>();
+    private Set<Stock> stock;
 
     private List<Product> productList;
 

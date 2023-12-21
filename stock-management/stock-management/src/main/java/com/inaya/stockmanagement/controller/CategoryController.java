@@ -2,6 +2,7 @@ package com.inaya.stockmanagement.controller;
 
 import com.inaya.stockmanagement.dto.CategoryDTO;
 import com.inaya.stockmanagement.manager.CategoryManager;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class CategoryController {
     }
 
     @PostMapping(value = "/category")
-    public CategoryDTO addCategory(@RequestBody CategoryDTO categoryDTO) {
+    public ResponseEntity<CategoryDTO> addCategory(@RequestBody CategoryDTO categoryDTO) {
         return categoryManager.saveCategory(categoryDTO);
     }
 

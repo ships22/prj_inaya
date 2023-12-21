@@ -1,5 +1,6 @@
 package com.inaya.stockmanagement.service.supplier;
 
+import com.inaya.stockmanagement.Exception.BaseException;
 import com.inaya.stockmanagement.model.Supplier;
 import com.inaya.stockmanagement.repository.SupplierRepository;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,12 @@ public class SupplierServiceImpl implements SupplierService {
      * @return
      */
     @Override
-    public Supplier add(Supplier supplier) {
+    public Supplier add(Supplier supplier) throws BaseException {
+        try {
         return supplierRepository.save(supplier);
+        }catch (Exception e){
+            throw new BaseException("Duplicate entry");
+        }
     }
 
     /**

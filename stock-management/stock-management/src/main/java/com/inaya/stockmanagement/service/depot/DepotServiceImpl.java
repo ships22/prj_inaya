@@ -1,5 +1,6 @@
 package com.inaya.stockmanagement.service.depot;
 
+import com.inaya.stockmanagement.Exception.BaseException;
 import com.inaya.stockmanagement.model.Depot;
 import com.inaya.stockmanagement.repository.DepotRepository;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,12 @@ public class DepotServiceImpl implements DepotService{
      * @return
      */
     @Override
-    public Depot add(Depot depot) {
-        return depotRepository.save(depot);
+    public Depot add(Depot depot) throws BaseException{
+        try {
+            return depotRepository.save(depot);
+        } catch (Exception e) {
+            throw new BaseException("Duplicate entry");
+        }
     }
 
     /**

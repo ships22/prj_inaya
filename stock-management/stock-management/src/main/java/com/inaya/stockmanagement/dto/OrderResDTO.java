@@ -4,20 +4,19 @@ import com.inaya.stockmanagement.model.OrderDetails;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Data
-public class OrderDTO {
+public class OrderResDTO {
 
     private Long id;
-
-    private Date date;
-
+    private LocalDateTime date;
     private String status;
-
-    private BigDecimal vat;
-
-    private Set<OrderDetails> orderDetails;
+    private BigDecimal priceWithVat;
+    private int vat;
+    private List<OrderDetails> orderDetails;
 
 }

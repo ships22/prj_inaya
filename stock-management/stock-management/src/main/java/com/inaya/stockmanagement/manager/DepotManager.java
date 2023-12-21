@@ -5,6 +5,8 @@ import com.inaya.stockmanagement.dto.DepotDTO;
 import com.inaya.stockmanagement.model.Category;
 import com.inaya.stockmanagement.model.Depot;
 import com.inaya.stockmanagement.service.depot.DepotService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -21,13 +23,14 @@ public class DepotManager {
         this.depotService = depotService;
     }
 
-    public DepotDTO saveDepot(DepotDTO depotDTO) {
+    public ResponseEntity<DepotDTO> saveDepot(DepotDTO depotDTO) {
         Depot depot = new Depot();
         depot.setName(depotDTO.getName());
         depot.setAddress(depotDTO.getAddress());
         depot.setEmail(depotDTO.getEmail());
         depot.setPhone(depotDTO.getPhone());
-        return modelToDto(depotService.add(depot));
+        DepotDTO addedDepot = modelToDto(depotService.add(depot));
+        return new ResponseEntity<>(addedDepot, HttpStatus.CREATED);
     }
 
     public DepotDTO updateDepot(DepotDTO depotDTO) {
@@ -67,6 +70,7 @@ public class DepotManager {
         depotDTO.setAddress(depot.getAddress());
         depotDTO.setEmail(depot.getEmail());
         depotDTO.setPhone(depot.getPhone());
+        depotDTO.setStock(depot.getStocks());
         return depotDTO;
     }
 
@@ -77,8 +81,8 @@ public class DepotManager {
         depotDTO.setAddress(depot.getAddress());
         depotDTO.setEmail(depot.getEmail());
         depotDTO.setPhone(depot.getPhone());
-        depotDTO.setProductList(depot.getProductList());
-        depotDTO.setStock(depot.getStock());
+        //depotDTO.setProductList(depot.getProductList());
+        //depotDTO.setStock(depot.getStock());
         return depotDTO;
     }
 

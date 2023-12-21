@@ -1,10 +1,14 @@
 package com.inaya.stockmanagement.manager;
 
+import com.inaya.stockmanagement.Exception.BaseException;
 import com.inaya.stockmanagement.dto.CategoryDTO;
 import com.inaya.stockmanagement.model.Category;
 import com.inaya.stockmanagement.service.category.CategoryService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.sql.SQLNonTransientException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,10 +22,11 @@ public class CategoryManager {
         this.categoryService = categoryService;
     }
 
-    public CategoryDTO saveCategory(CategoryDTO categoryDTO) {
+    public ResponseEntity<CategoryDTO> saveCategory(CategoryDTO categoryDTO) {
         Category category = new Category();
         category.setName(categoryDTO.getName());
-        return modelToDto(categoryService.add(category));
+            CategoryDTO addedCategory = modelToDto(categoryService.add(category));
+            return new ResponseEntity<>(addedCategory, HttpStatus.CREATED);
     }
 
     public CategoryDTO updateCategory(CategoryDTO categoryDTO) {

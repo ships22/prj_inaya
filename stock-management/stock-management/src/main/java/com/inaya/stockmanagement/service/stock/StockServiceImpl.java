@@ -22,7 +22,7 @@ public class StockServiceImpl implements StockService {
      */
     @Override
     public Stock add(Stock stock) {
-        return stockRepository.save(stock);
+        return stockRepository.saveAndFlush(stock);
     }
 
     /**

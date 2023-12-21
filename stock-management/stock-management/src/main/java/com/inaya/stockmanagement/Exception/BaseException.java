@@ -1,14 +1,14 @@
 package com.inaya.stockmanagement.Exception;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class BaseException extends RuntimeException{
+public class BaseException extends RuntimeException {
 
-    private String code;
     private String message;
+    public BaseException(String message) {
+        this.message = message;
+    }
 }

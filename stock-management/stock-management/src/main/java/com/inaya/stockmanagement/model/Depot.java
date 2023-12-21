@@ -27,23 +27,16 @@ public class Depot {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "phone")
     private String phone;
 
-
-    @OneToMany(mappedBy = "depot", fetch = FetchType.LAZY)
-    private Set<Stock> stock = new HashSet<>();
-
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "depot_product",
-            joinColumns = @JoinColumn(name = "depot_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id")
-    )
-    private List<Product> productList;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "depot_id", referencedColumnName = "id")
+    private Set<Stock> stocks;
+
 
 }
